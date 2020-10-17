@@ -1,0 +1,35 @@
+spring:
+  application:
+    name: tiktok-follower-crawler
+  main:
+    banner-mode: "off"
+    datasource:
+      url: jdbc:h2:file:/data/demo
+      driverClassName: org.h2.Driver
+      username=sa
+      password=password
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+
+server:
+  port: 8010
+  tomcat:
+    max-connections: 400
+    accept-count: 40
+
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 5000
+        readTimeout: 5000
+        loggerLevel: HEADERS
+
+tiktok:
+  url: https://www.tiktok.com/node/share
+  userAgent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.75 Safari/537.36
+  users:
+    - @geribakonyi
+
+scheulder:
+  tiktokcheck: "0 0 * ? * *"

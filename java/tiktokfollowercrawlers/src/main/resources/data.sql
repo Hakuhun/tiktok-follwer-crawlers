@@ -1,0 +1,8 @@
+DROP TABLE IF EXISTS followercountdata;
+
+CREATE TABLE followercountdata (
+  id INT AUTO_INCREMENT  PRIMARY KEY,
+  updateTime TIMESTAMP DEFAULT NULL,
+  connectedUser VARCHAR2(200) DEFAULT NULL,
+  numberOfFans BIGINT DEFAULT NULL
+);
