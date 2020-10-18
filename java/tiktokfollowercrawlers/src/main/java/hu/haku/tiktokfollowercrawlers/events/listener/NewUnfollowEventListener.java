@@ -9,6 +9,6 @@ public class NewUnfollowEventListener implements ApplicationListener<TikTokUnfol
 
     @Override
     public void onApplicationEvent(TikTokUnfollowEvent event) {
-        log.info("Some follower has unfollowed you, follower count: " + event.getEventData().getActualCount());
+        log.info("Some follower has unfollowed you, " + event.getEventData().getConnectedUser() + " follower count: " + event.getEventData().getActualCount());
     }
 }

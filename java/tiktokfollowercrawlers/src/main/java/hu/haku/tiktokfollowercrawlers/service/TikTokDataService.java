@@ -20,14 +20,16 @@ public class TikTokDataService {
     @Transactional
     public BDTikTokFollowerData createNewRecord(String user, long fans) {
         BDTikTokFollowerData data = getPreviousEntry(user);
-        data.setActualCount(fans);
-        repository.save(converter.to(data));
+        if(data.getPreviousCount() != fans || data.getPreviousCount() == 0L){
+            data.setActualCount(fans);
+            repository.save(converter.to(data));
+        }
         return data;
     }
 
 
     private BDTikTokFollowerData getPreviousEntry(String user) {
-        Optional<TikTokFollowerData> localData = repository.getLasTikTokFollowerDataByConnectedUser(user);
+        Optional<TikTokFollowerData> localData = repository.findTopByConnectedUser(user);
         if (localData.isPresent()) {
             return converter.from(localData.get(), null);
         }

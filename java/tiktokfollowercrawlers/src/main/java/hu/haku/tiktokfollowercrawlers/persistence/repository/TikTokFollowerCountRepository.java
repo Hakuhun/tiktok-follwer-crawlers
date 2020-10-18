@@ -7,6 +7,5 @@ import java.util.Optional;
 
 public interface TikTokFollowerCountRepository extends CrudRepository<TikTokFollowerData, Long> {
 
-    public Optional<TikTokFollowerData> getLasTikTokFollowerDataByConnectedUser(String connectedUser);
-
+    public Optional<TikTokFollowerData> findTopByConnectedUser(String connectedUser);
 }

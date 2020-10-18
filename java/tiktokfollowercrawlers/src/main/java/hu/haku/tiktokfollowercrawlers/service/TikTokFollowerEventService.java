@@ -1,5 +1,6 @@
 package hu.haku.tiktokfollowercrawlers.service;
 
+import hu.haku.tiktokfollowercrawlers.events.model.ITikTokFollowEvent;
 import hu.haku.tiktokfollowercrawlers.events.model.TikTokFollowerEvent;
 import hu.haku.tiktokfollowercrawlers.events.model.TikTokUnfollowEvent;
 import hu.haku.tiktokfollowercrawlers.model.BDTikTokFollowerData;
@@ -19,7 +20,7 @@ public class TikTokFollowerEventService {
         getEvent(actualNumberOfFans, data).ifPresent(applicationEventPublisher::publishEvent);
     }
 
-    private Optional<TikTokFollowerEvent> getEvent(Long actualNumberOfFans, BDTikTokFollowerData data) {
+    private Optional<ITikTokFollowEvent> getEvent(Long actualNumberOfFans, BDTikTokFollowerData data) {
         if (actualNumberOfFans < data.getPreviousCount()) {
             return Optional.of(new TikTokUnfollowEvent(this, data));
         } else if (actualNumberOfFans > data.getPreviousCount()) {

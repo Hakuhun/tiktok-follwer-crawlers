@@ -3,13 +3,19 @@ spring:
     name: tiktok-follower-crawler
   main:
     banner-mode: "off"
-    datasource:
-      url: jdbc:h2:file:/data/demo
-      driverClassName: org.h2.Driver
-      username=sa
-      password=password
+  datasource:
+    url: "jdbc:h2:~/tiktokdata"
+    driverClassName: org.h2.Driver
+    username: sa
+    password: password
   jpa:
     database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      naming:
+        physical-strategy: "org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl"
+  h2:
+    console:
+      enabled: true
 
 server:
   port: 8010
@@ -23,13 +29,31 @@ feign:
       default:
         connectTimeout: 5000
         readTimeout: 5000
-        loggerLevel: HEADERS
+        loggerLevel: FULL
+
+logging:
+  level:
+    hu:
+      haku:
+        tiktokfollowercrawlers:
+          client:
+            tiktok:
+              TikTokClient: DEBUG
 
 tiktok:
   url: https://www.tiktok.com/node/share
   userAgent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.75 Safari/537.36
   users:
-    - @geribakonyi
+    - "@geribakonyi"
+    - "@ironsanctuary"
+    - "@mmmjoemele"
+    - "@blondiebytes"
+    - "@bp_tiktok"
+    - "@jeenie.weenie"
+    - "@morgandrinkscoffee"
+    - "@sidclusive"
+    - "@acooknamedmatt"
+    - "@the_pastaqueen"
 
 scheulder:
-  tiktokcheck: "0 0 * ? * *"
+  tiktokcheck: "0 * * ? * *"

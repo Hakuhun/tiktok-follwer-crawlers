@@ -2,6 +2,7 @@ package hu.haku.tiktokfollowercrawlers.scheduler;
 
 import hu.haku.tiktokfollowercrawlers.client.tiktok.TikTokClientWrapper;
 import hu.haku.tiktokfollowercrawlers.client.tiktok.model.Body;
+import hu.haku.tiktokfollowercrawlers.client.tiktok.model.UserData;
 import hu.haku.tiktokfollowercrawlers.configuration.TikTokDataConfig;
 import hu.haku.tiktokfollowercrawlers.model.BDTikTokFollowerData;
 import hu.haku.tiktokfollowercrawlers.persistence.repository.TikTokFollowerCountRepository;
@@ -25,14 +26,13 @@ public class TikTokFollowerCountScheduler {
     private final TikTokDataService dataService;
     private final TikTokFollowerEventService eventService;
 
-    @Scheduled(fixedDelay = 60000L)
+    @Scheduled(cron = "${scheulder.tiktokcheck}")
     public void countFollowers() {
-
         for (String user : config.getUsers()) {
-            Optional<Body> userData = client.getUserDataByUserId(user);
+            Optional<UserData> userData = client.getUserDataByUserId(user);
             userData.ifPresent(x -> {
-                BDTikTokFollowerData data = dataService.createNewRecord(user, x.getUserData().getFans());
-                eventService.createEvent(x.getUserData().getFans(), data);
+                BDTikTokFollowerData data = dataService.createNewRecord(user, x.getFans());
+                eventService.createEvent(x.getFans(), data);
             });
         }
     }

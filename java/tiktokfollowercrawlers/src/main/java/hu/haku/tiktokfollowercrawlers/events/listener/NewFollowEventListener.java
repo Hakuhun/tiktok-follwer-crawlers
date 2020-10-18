@@ -10,6 +10,6 @@ import org.springframework.stereotype.Component;
 public class NewFollowEventListener implements ApplicationListener<TikTokFollowerEvent> {
     @Override
     public void onApplicationEvent(TikTokFollowerEvent event) {
-        log.info("A(n) new follower started follow you, follower count: " + event.getEventData().getActualCount());
+        log.info("New follower(s) have started to follow you "+ event.getEventData().getConnectedUser() +", follower count: " + event.getEventData().getActualCount());
     }
 }
