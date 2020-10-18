@@ -22,7 +22,8 @@ public class TikTokClientWrapper {
         TikTokUserResponse tikTokResponseBody = client.getUserDataByUserId(
                 userId,
                 config.getUserAgent(),
-                UUID.randomUUID().toString()
+                "www.tiktok.com",
+                "tt_webid=6884692678157059589; tt_webid_v2=6884692678157059589"
         );
         return null != tikTokResponseBody ? Optional.of(tikTokResponseBody.getBody().getUserData()) : Optional.empty();
     }

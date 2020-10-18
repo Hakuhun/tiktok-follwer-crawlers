@@ -22,7 +22,8 @@ interface TikTokClient {
     public TikTokUserResponse getUserDataByUserId(
             @PathVariable("userId") String userId,
             @RequestHeader("user-agent") String userAgent,
-            @RequestHeader("Host") String host
+            @RequestHeader("Host") String host,
+            @RequestHeader("Cookie") String cookie
     );
 
 }

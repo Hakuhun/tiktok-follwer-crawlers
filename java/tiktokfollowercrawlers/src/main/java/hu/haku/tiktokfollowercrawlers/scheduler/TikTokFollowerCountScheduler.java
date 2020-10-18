@@ -1,7 +1,6 @@
 package hu.haku.tiktokfollowercrawlers.scheduler;
 
 import hu.haku.tiktokfollowercrawlers.client.tiktok.TikTokClientWrapper;
-import hu.haku.tiktokfollowercrawlers.client.tiktok.model.Body;
 import hu.haku.tiktokfollowercrawlers.client.tiktok.model.UserData;
 import hu.haku.tiktokfollowercrawlers.configuration.TikTokDataConfig;
 import hu.haku.tiktokfollowercrawlers.model.BDTikTokFollowerData;
